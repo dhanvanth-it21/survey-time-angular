@@ -1,0 +1,55 @@
+nav {
+    display: block;
+}
+
+.nav-container {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-form-info {
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-logo fa-icon {
+    color: #889e73;
+    font-size: 2rem;
+}
+
+.nav-title h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 24px;
+    color: rgb(0, 0, 0);
+}
+
+.underline {
+    border-bottom: 3px solid #000;
+    width: 100%;
+}
+
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: #889e73;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+

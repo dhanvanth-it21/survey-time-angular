@@ -1,0 +1,18 @@
+<form [formGroup]="surveyDetailsForm" class="form-heading container-box active-box">
+  <div class="form-heading-title-div">
+    <input
+      class="form-heading-title-input"
+      placeholder="Survey Title"
+      type="text"
+      formControlName="surveyTitle"
+    />
+  </div>
+  <div class="form-heading-discription-div">
+    <input
+      class="form-heading-discription-input"
+      type="text"
+      placeholder="Survey description (optional)"
+      formControlName="surveyDescription"
+    />
+  </div>
+</form>

@@ -1,0 +1,25 @@
+<nav>
+  <div class="nav-container">
+    <div class="nav-form-info">
+      <div class="nav-logo">
+        <fa-icon [icon]="faClipboardList"></fa-icon>
+      </div>
+      <div class="nav-title">
+        <h1>Survey Time</h1>
+        <div class="underline"></div>
+      </div>
+    </div>
+    <div class="dynamic-container" [ngSwitch]="currentUrl">
+      <div *ngSwitchCase="'/'" class="dynamic-content">
+        <h3>Go Survey!!</h3>
+      </div>
+    </div>
+    <div *ngIf="isUserLoggedIn" class="user-details">
+      <div class="profile">
+        <h2>
+          {{ firstLetterOfEmailId }}
+        </h2>
+      </div>
+    </div>
+  </div>
+</nav>
