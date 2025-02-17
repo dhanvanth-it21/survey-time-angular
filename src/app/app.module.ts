@@ -13,8 +13,8 @@ import { SurveyResponsesComponent } from './pages/admin/survey-responses/survey-
 import { AvailableSurveysComponent } from './pages/user/available-surveys/available-surveys.component';
 import { RespondSurveyComponent } from './pages/user/respond-survey/respond-survey.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from './auth.service';
-import { ButtonDirective } from './button.directive';
+import { AuthService } from './common/auth.service';
+import { ButtonDirective } from './common/button.directive';
 
 
 @NgModule({

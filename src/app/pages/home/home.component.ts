@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../common/auth.service';
+import { DataSharingService } from '../../common/data-sharing.service';
 
 @Component({
   selector: 'app-home',
@@ -14,14 +15,19 @@ export class HomeComponent {
   // dependency injection
   constructor(private router: Router,
     private formBuilder: FormBuilder,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private dataSharingService: DataSharingService) { }
 
   loginForm!: FormGroup;
+
+  dynamicContent: string[] = [];
 
   ngOnInit() {
 
     this.authService.logout();
     this.authService.logedUserSubject$.next(null);
+
+    this.dataSharingService.updateData(this.dynamicContent);
     
     this.loginForm = this.formBuilder.group({
       emailId: ['', [

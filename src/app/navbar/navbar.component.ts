@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { faClipboardList, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../common/auth.service';
 import { NavigationStart, Router, Event as NavigationEvent } from '@angular/router';
+import { DataSharingService } from '../common/data-sharing.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,16 +16,17 @@ export class NavbarComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private dataSharingService: DataSharingService,
   ) { }
 
   // handling the current user
   firstLetterOfEmailId?: string;
   public loggedUser: string | null = null;
-  public isUserLoggedIn: boolean = false;
+  public isUserLoggedIn?: boolean;
 
 
   //dynamic content on the navbar 
-  public currentUrl: string = '/';
+  dynamicContent: {label: string, routeUrl: string}[] = [];
 
   ngOnInit() {
 
@@ -42,16 +44,17 @@ export class NavbarComponent {
 
     //dynamic content on the navbar 
     //according to the landing page
-    this.router.events
-      .subscribe(
-        (event: NavigationEvent) => {
-          if (event instanceof NavigationStart) {
-            this.currentUrl = event.url;
-            console.log(event)
-          }
-        });
+    this.dataSharingService.shareData$.subscribe((datas: string[]) => {
+      this.dynamicContent = this.parseDynamicContent(datas);
+    })
   }
 
+
+  parseDynamicContent(datas: string[]) {
+    return this.dynamicContent = datas.map((data) => {
+      return JSON.parse(data);
+    })
+  }
 
   // is logged in and getting first letter of email id
   isLoggedIn(): boolean {

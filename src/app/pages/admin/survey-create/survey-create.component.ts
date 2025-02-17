@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DataSharingService } from '../../../common/data-sharing.service';
 
 @Component({
   selector: 'app-survey-create',
@@ -8,11 +9,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SurveyCreateComponent {
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder,
+    private dataSharingService: DataSharingService
+  ) {}
+
+  dynamicContent =
+    [
+      JSON.stringify({
+        'label': 'Create',
+        'routeUrl': 'admin/survey-create'
+      }),
+    ]
 
   surveyDetailsForm!: FormGroup;
   
   ngOnInit() {
+
+    this.dataSharingService.updateData(this.dynamicContent);
+
     this.surveyDetailsForm = this.formBuilder.group({
       surveyTitle: ['',[
         Validators.required,
