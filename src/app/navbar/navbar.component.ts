@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faClipboardList, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faClipboardList, faRightFromBracket, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../common/auth.service';
 import { NavigationStart, Router, Event as NavigationEvent } from '@angular/router';
 import { DataSharingService } from '../common/data-sharing.service';
@@ -11,7 +11,9 @@ import { DataSharingService } from '../common/data-sharing.service';
 })
 export class NavbarComponent {
 
+  //font awesome icons
   public faClipboardList: IconDefinition = faClipboardList;
+  public faSignOut: IconDefinition = faRightFromBracket;
 
   constructor(
     private authService: AuthService,
@@ -50,6 +52,7 @@ export class NavbarComponent {
   }
 
 
+  //(helper) string to json for dynamic content
   parseDynamicContent(datas: string[]) {
     return this.dynamicContent = datas.map((data) => {
       return JSON.parse(data);
@@ -67,6 +70,12 @@ export class NavbarComponent {
       console.log('not logged in');
       return false;
     }
+  }
+
+  //logout of user and redirecting to the login page (home page)
+  logoutUser(): void {
+    this.authService.logout();
+    this.router.navigate([''])
   }
 
   ngOnDestroy() {

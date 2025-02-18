@@ -5,6 +5,7 @@ import { RespondSurveyComponent } from './respond-survey/respond-survey.componen
 
 const routes: Routes = [
   {path: 'available-surveys', component: AvailableSurveysComponent},
+  {path: '', component: AvailableSurveysComponent},
   {path: 'respond-survey', component: RespondSurveyComponent},
 ];
 

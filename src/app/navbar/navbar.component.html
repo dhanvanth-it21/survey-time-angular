@@ -9,18 +9,25 @@
         <div class="underline"></div>
       </div>
     </div>
-    <div class="dynamic-container">
-      <div *ngFor="let button of dynamicContent">
-          <button appButton [routerLink]="button.routeUrl">
-            {{ button.label }}
-          </button>
+    <div class="nav-details">
+      <div class="dynamic-container">
+        <div *ngFor="let button of dynamicContent">
+            <button appButton [routerLink]="button.routeUrl">
+              {{ button.label }}
+            </button>
+        </div>
       </div>
-    </div>
-    <div *ngIf="isUserLoggedIn" class="user-details">
-      <div class="profile">
-        <h2>
-          {{ firstLetterOfEmailId }}
-        </h2>
+      <div *ngIf="isUserLoggedIn" class="user-details">
+        <div class="profile">
+          <h2>
+            {{ firstLetterOfEmailId }}
+          </h2>
+        </div>
+        <div class="sign-out">
+          <a (click)="logoutUser()">
+            <fa-icon [icon]="faSignOut"></fa-icon>
+          </a>
+        </div>
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 nav {
     display: block;
+    margin-bottom: 20px;
 }
 
 .nav-container {
@@ -40,6 +41,17 @@ nav {
     width: 100%;
 }
 
+.nav-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-details{
+    width: 40px;
+    height: 40px;
+}
 
 .profile {
     display: flex;
@@ -47,8 +59,8 @@ nav {
     justify-content: center;
     color: #fff;
     background-color: #889e73;
-    width: 40px;
-    height: 40px;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
 }
 
@@ -60,5 +72,42 @@ nav {
 }
 
 
+/* logout hover effect on profile  */
+.user-details {
+    display: flex;
+    cursor: pointer;
+    position: relative;
+}
+
+.user-details .sign-out {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.user-details:hover .profile {
+    display: none;
+}
+
+.user-details:hover .sign-out {
+    display: flex;
+    background-color: #889e73;
+}
+
+.user-details:hover .sign-out a {
+    color: #fff;
+}
+
+.user-details:active .sign-out {
+    background-color: #fff;
+}
+
+.user-details:active .sign-out a{
+    color: #889e73;
+}
 
 
