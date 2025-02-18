@@ -3,6 +3,8 @@ import { faClipboardList, faRightFromBracket, IconDefinition } from '@fortawesom
 import { AuthService } from '../common/auth.service';
 import { NavigationStart, Router, Event as NavigationEvent } from '@angular/router';
 import { DataSharingService } from '../common/data-sharing.service';
+import { Subscription } from 'rxjs';
+import { ClickEventService } from '../common/click-event.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +21,13 @@ export class NavbarComponent {
     private authService: AuthService,
     private router: Router,
     private dataSharingService: DataSharingService,
+    private clcikEventService: ClickEventService,
   ) { }
+
+  //subcribtions
+  authServiceSubcription!: Subscription;
+  dataSharingServiceSubcription!: Subscription;
+  clickEventServiceSubcription!: Subscription;
 
   // handling the current user
   firstLetterOfEmailId?: string;
@@ -33,7 +41,7 @@ export class NavbarComponent {
   ngOnInit() {
 
     // subcribe to the loggged user information
-    this.authService.logedUserSubject$.subscribe((user) => {
+    this.authServiceSubcription = this.authService.logedUserSubject$.subscribe((user) => {
       if (user !== null) {
         this.loggedUser = JSON.stringify(user);
         this.isUserLoggedIn = this.isLoggedIn();
@@ -46,9 +54,9 @@ export class NavbarComponent {
 
     //dynamic content on the navbar 
     //according to the landing page
-    this.dataSharingService.shareData$.subscribe((datas: string[]) => {
+    this.dataSharingServiceSubcription = this.dataSharingService.shareData$.subscribe((datas: string[]) => {
       this.dynamicContent = this.parseDynamicContent(datas);
-    })
+    });
   }
 
 
@@ -78,8 +86,18 @@ export class NavbarComponent {
     this.router.navigate([''])
   }
 
+  // notifying the click event on the button
+  buttonClick(event: Event,button: {label: string, routeUrl: string}): void {
+    event.preventDefault();
+    this.clcikEventService.updateData(button.label);
+    if(button.routeUrl) {
+      this.router.navigate([button.routeUrl]);
+    }
+  }
+
   ngOnDestroy() {
-    this.authService.logedUserSubject$.unsubscribe();
+    this.authServiceSubcription.unsubscribe();
+    this.dataSharingServiceSubcription.unsubscribe();   
   }
 
 }

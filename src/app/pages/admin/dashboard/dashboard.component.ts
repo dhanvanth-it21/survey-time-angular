@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataSharingService } from '../../../common/data-sharing.service';
+import { ClickEventService } from '../../../common/click-event.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +9,10 @@ import { DataSharingService } from '../../../common/data-sharing.service';
 })
 export class DashboardComponent {
 
-  constructor(private dataSharingService: DataSharingService) { }
+  constructor(
+    private dataSharingService: DataSharingService,
+    private clickEventService: ClickEventService,
+  ) { }
 
   public loggedInUser: { 'emailId': string, 'role': string } | null = null;
 
@@ -34,6 +38,14 @@ export class DashboardComponent {
       this.loggedInUser = JSON.parse(user);
       console.log('loggedInUser:', this.loggedInUser);
     }
+
+    //subcribing to the buttons in nvabar
+    this.clickEventService.shareData$.subscribe((button) => {
+      if(button === "Create-Survey") {
+        console.log("Create-Survey button clicked at admin page");
+      }
+
+    }) 
   }
 
 

@@ -12,7 +12,7 @@
     <div class="nav-details">
       <div class="dynamic-container">
         <div *ngFor="let button of dynamicContent">
-            <button appButton [routerLink]="button.routeUrl">
+            <button appButton (click)="buttonClick($event, button)">
               {{ button.label }}
             </button>
         </div>

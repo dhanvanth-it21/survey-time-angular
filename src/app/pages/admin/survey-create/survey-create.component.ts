@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataSharingService } from '../../../common/data-sharing.service';
+import { ClickEventService } from '../../../common/click-event.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-survey-create',
@@ -10,19 +12,24 @@ import { DataSharingService } from '../../../common/data-sharing.service';
 export class SurveyCreateComponent {
 
   constructor(private formBuilder: FormBuilder,
-    private dataSharingService: DataSharingService
+    private dataSharingService: DataSharingService,
+    private clickEventService: ClickEventService,
   ) {}
+
+
+  //subscription 
+  clickEventServiceSubcription!: Subscription;
 
   // dynamic content to navbar from survey-create page
   dynamicContent =
     [
       JSON.stringify({
         'label': 'Validate',
-        // 'routeUrl': 'admin/survey-create' //need to be handled
+        'routeUrl': null //need to be handled
       }),
       JSON.stringify({
         'label': 'Create',
-        // 'routeUrl': 'admin' //need to be handled
+        'routeUrl': null //need to be handled
       }),
       JSON.stringify({
         'label': 'Discard',
@@ -34,6 +41,7 @@ export class SurveyCreateComponent {
   // survey details formGroup initialization
   surveyDetailsForm!: FormGroup;
   
+
   ngOnInit() {
 
     // updating the observable for dynamic navbar
@@ -49,6 +57,21 @@ export class SurveyCreateComponent {
 
     //(helper call)
     this.setValue();
+
+   
+   // Event Button handling functionality , event form the navBar
+   this.clickEventServiceSubcription = this.clickEventService.shareData$.subscribe((button) => {
+    if(button === "Create") {
+      console.log("Create button clicked at survey create page");
+    }
+    else if(button === "Validate") {
+      console.log("Valdiate button clicked at survey create page");
+    }
+    else if(button === "Discard") {
+      console.log("Discard button clicked at survey create page");
+    }
+   })
+
   }
 
   //(helper) default value to be set to the survey-detail formGroup
@@ -58,4 +81,10 @@ export class SurveyCreateComponent {
       surveyDescription: "Sample Description"
     })
   }
+
+  ngOnDestroy() {
+    this.clickEventServiceSubcription.unsubscribe();
+  }
+  
+
 }
