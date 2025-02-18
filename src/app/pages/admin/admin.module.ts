@@ -7,6 +7,10 @@ import { SurveyCreateComponent } from './survey-create/survey-create.component';
 import { SurveyPreviewComponent } from './survey-preview/survey-preview.component';
 import { SurveyResponsesComponent } from './survey-responses/survey-responses.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { QuestionComponent } from './questions/question/question.component';
+import { DropdownComponent } from './questions/dropdown/dropdown.component';
+import { TypeComponent } from './questions/type/type.component';
+// import { ButtonDirective } from '../../common/button.directive';
 
 
 @NgModule({
@@ -14,7 +18,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     SurveyCreateComponent,
     SurveyPreviewComponent,
-    SurveyResponsesComponent
+    SurveyResponsesComponent,
+    QuestionComponent,
+    DropdownComponent,
+    TypeComponent,
+    // ButtonDirective,
   ],
   imports: [
     CommonModule,
