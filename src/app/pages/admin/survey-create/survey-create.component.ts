@@ -11,6 +11,10 @@ import { Subscription } from 'rxjs';
 })
 export class SurveyCreateComponent {
 
+
+  // survey details formGroup initialization
+  surveyDetailsForm!: FormGroup;
+
   constructor(private formBuilder: FormBuilder,
     private dataSharingService: DataSharingService,
     private clickEventService: ClickEventService,
@@ -38,8 +42,6 @@ export class SurveyCreateComponent {
     ]
 
 
-  // survey details formGroup initialization
-  surveyDetailsForm!: FormGroup;
   
 
   ngOnInit() {
@@ -62,7 +64,7 @@ export class SurveyCreateComponent {
    // Event Button handling functionality , event form the navBar
    this.clickEventServiceSubcription = this.clickEventService.shareData$.subscribe((button) => {
     if(button === "Create") {
-      console.log("Create button clicked at survey create page");
+      this.ngSubmitSurveyDetails();
     }
     else if(button === "Validate") {
       console.log("Valdiate button clicked at survey create page");
@@ -80,6 +82,11 @@ export class SurveyCreateComponent {
       surveyTitle: "Sample Title",
       surveyDescription: "Sample Description"
     })
+  }
+
+  //formGroup: (sruvey title and description) submit 
+  ngSubmitSurveyDetails() {
+    console.log(this.surveyDetailsForm.value);
   }
 
   ngOnDestroy() {

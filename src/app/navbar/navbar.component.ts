@@ -17,12 +17,7 @@ export class NavbarComponent {
   public faClipboardList: IconDefinition = faClipboardList;
   public faSignOut: IconDefinition = faRightFromBracket;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private dataSharingService: DataSharingService,
-    private clcikEventService: ClickEventService,
-  ) { }
+  
 
   //subcribtions
   authServiceSubcription!: Subscription;
@@ -36,20 +31,24 @@ export class NavbarComponent {
 
 
   //dynamic content on the navbar 
-  dynamicContent: {label: string, routeUrl: string}[] = [];
+  dynamicContent: { label: string, routeUrl: string }[] = [];
+
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private dataSharingService: DataSharingService,
+    private clcikEventService: ClickEventService,
+  ) {
+   }
 
   ngOnInit() {
 
+
     // subcribe to the loggged user information
     this.authServiceSubcription = this.authService.logedUserSubject$.subscribe((user) => {
-      if (user !== null) {
-        this.loggedUser = JSON.stringify(user);
-        this.isUserLoggedIn = this.isLoggedIn();
-      }
-      else {
-        this.loggedUser = null;
-        this.isUserLoggedIn = false;
-      }
+      // (helper call) 
+      this.profileView(user);
     })
 
     //dynamic content on the navbar 
@@ -57,6 +56,21 @@ export class NavbarComponent {
     this.dataSharingServiceSubcription = this.dataSharingService.shareData$.subscribe((datas: string[]) => {
       this.dynamicContent = this.parseDynamicContent(datas);
     });
+  }
+
+  // (helper)
+  profileView(user: {'emailId': string, 'role': string} | null) {
+    
+    if (typeof window !== 'undefined') {
+      if (user !== null) {
+        this.loggedUser = JSON.stringify(user);
+        this.isUserLoggedIn = this.isLoggedIn();
+      }
+      else {
+        this.loggedUser = localStorage.getItem('loggedInUser');
+        this.isUserLoggedIn = this.isLoggedIn();
+      }
+    }
   }
 
 
@@ -87,17 +101,17 @@ export class NavbarComponent {
   }
 
   // notifying the click event on the button
-  buttonClick(event: Event,button: {label: string, routeUrl: string}): void {
+  buttonClick(event: Event, button: { label: string, routeUrl: string }): void {
     event.preventDefault();
     this.clcikEventService.updateData(button.label);
-    if(button.routeUrl) {
+    if (button.routeUrl) {
       this.router.navigate([button.routeUrl]);
     }
   }
 
   ngOnDestroy() {
     this.authServiceSubcription.unsubscribe();
-    this.dataSharingServiceSubcription.unsubscribe();   
+    this.dataSharingServiceSubcription.unsubscribe();
   }
 
 }

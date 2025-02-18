@@ -15,4 +15,7 @@
       formControlName="surveyDescription"
     />
   </div>
+  <div class="error" *ngIf="surveyDetailsForm.get('surveyTitle')?.invalid && surveyDetailsForm.get('surveyTitle')?.touched">
+    Title is required
+  </div>
 </form>

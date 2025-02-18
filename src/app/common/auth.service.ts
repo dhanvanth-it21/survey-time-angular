@@ -13,8 +13,9 @@ export class AuthService {
     {'emailId': 'kumar@gmail.com', 'password': '12345678', 'role': 'user'}
   ]
 
-  public logedUserSubject$ = new BehaviorSubject<{'emailId': string, 'role': string} | null>(null);
+  public UserSubject = new BehaviorSubject<{'emailId': string, 'role': string} | null>(null);
 
+  logedUserSubject$ = this.UserSubject.asObservable();
   constructor() { }
 
 
@@ -29,7 +30,7 @@ export class AuthService {
 
   storeLoggedInUser(user: {'emailId': string, 'role': string}) {
     localStorage.setItem('loggedInUser', JSON.stringify({emailId: user.emailId, role: user.role}));
-    this.logedUserSubject$.next(user);
+    this.UserSubject.next(user);
   }
 
   getLoggedInUser(): string | null {
@@ -37,7 +38,9 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('loggedInUser');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('loggedInUser');
+    }
   }
 
 }

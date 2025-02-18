@@ -32,11 +32,11 @@ export class DashboardComponent {
     this.dataSharingService.updateData(this.dynamicContent);
 
     //user detials
-    const user = localStorage.getItem('loggedInUser');
-    console.log('User:', user);
-    if (user) {
-      this.loggedInUser = JSON.parse(user);
-      console.log('loggedInUser:', this.loggedInUser);
+    if (typeof window !== 'undefined') {
+      const user = localStorage.getItem('loggedInUser');
+      if (user) {
+        this.loggedInUser = JSON.parse(user);
+      }
     }
 
     //subcribing to the buttons in nvabar

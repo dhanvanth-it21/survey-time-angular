@@ -25,7 +25,7 @@ export class HomeComponent {
   ngOnInit() {
 
     this.authService.logout();
-    this.authService.logedUserSubject$.next(null);
+    this.authService.UserSubject.next(null);
 
     this.dataSharingService.updateData(this.dynamicContent);
     
