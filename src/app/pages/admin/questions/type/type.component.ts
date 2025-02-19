@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-type',
@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrl: './type.component.css'
 })
 export class TypeComponent {
+
+  @Input()
+  questionType!: string;
+
+
+  
 
 }

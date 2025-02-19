@@ -9,7 +9,7 @@
     margin-right: 1rem;
   }
   
-  .question-type i {
+  .question-type fa-icon {
     margin-right: 10px;
   }
 
@@ -23,7 +23,7 @@
 
   }
   
-  .question-type-selection-container i {
+  .question-type-selection-container fa-icon {
     color: rgba(0, 0, 0, 0.6);
   }
   
@@ -31,23 +31,25 @@
   .question-type-options {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
     position: absolute;
     background-color: #fff;
     border-radius: 4px;
-    padding: 1rem;
-    right: 0;
+    padding: 0.5rem;
+    right: -40px;
+    top: -40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    min-width: 250px;
-    max-height: 300px;
+    min-width: 200px;
+    max-height: 250px;
     overflow: hidden;
     overflow-y: scroll;
+    z-index: 1;
   }
   
   .options {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
     cursor: pointer;
   }
   
@@ -55,13 +57,13 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1rem;
+    padding: 0.5rem;
     background-color: #f1f3f4;
     border-radius: 4px;
     padding-right: 4rem;
   }
   
-  .options .option i {
+  .options .option fa-icon {
     color: rgba(0, 0, 0, 0.6);
   }
   
@@ -73,7 +75,3 @@
     background-color: #d5d5d5;
   }
   
-  .question-type-options,
-  .hidden {
-    display: none;
-  }

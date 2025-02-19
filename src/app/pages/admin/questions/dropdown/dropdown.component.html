@@ -1,43 +1,18 @@
-<div class="question-type-selection-container">
+<div class="question-type-selection-container" (click)="toggleDropdown()">
   <div class="select-btn">
     <div class="question-type">
-      <!-- choosed on the first value  -->
+      <fa-icon [icon]="selectedTypeIcon"></fa-icon>
+      {{ selectedType }}
     </div>
-    <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
+    <fa-icon [icon]="faCaretDown"></fa-icon>
   </div>
 </div>
 
-<div class="question-type-options">
+<div class="question-type-options" *ngIf="isOpen">
   <ul class="options">
-    <li class="option">
-      <i class="fa-regular fa-circle-dot" aria-hidden="true"></i
-      ><span>Multiple Choice</span>
-    </li>
-    <li class="option">
-      <i class="fa-regular fa-square-check" aria-hidden="true"></i
-      ><span>Checkboxes</span>
-    </li>
-    <li class="option">
-      <i class="fa-regular fa-square-caret-down" aria-hidden="true"></i
-      ><span>Drop Down</span>
-    </li>
-    <li class="option">
-      <i class="fa-regular fa-file-lines" aria-hidden="true"></i
-      ><span>Paragraph</span>
-    </li>
-    <li class="option">
-      <i class="fa-solid fa-hashtag" aria-hidden="true"></i><span>Number</span>
-    </li>
-    <li class="option">
-      <i class="fa-regular fa-calendar-days" aria-hidden="true"></i
-      ><span>Date</span>
-    </li>
-    <li class="option">
-      <i class="fa-regular fa-clock" aria-hidden="true"></i><span>Time</span>
-    </li>
-    <li class="option">
-      <i class="fa-regular fa-image" aria-hidden="true"></i
-      ><span>Upload Image</span>
+    <li class="option" *ngFor="let questionType of questionTypeList" (click)="selectOption(questionType.name)">
+      <fa-icon [icon]="questionType.icon"></fa-icon>
+      <span>{{ questionType.name }}</span>
     </li>
   </ul>
 </div>

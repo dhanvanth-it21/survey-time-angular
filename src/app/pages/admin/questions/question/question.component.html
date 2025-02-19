@@ -1,24 +1,16 @@
-<div class="question-container container-box active-box">
+<form
+  [formGroup]="singleQuestion"
+  class="question-container container-box active-box"
+>
   <div class="question-selection">
-    <textarea placeholder="Question"></textarea>
-
-
-
-
-    <app-dropdown></app-dropdown>
-
-
-
-
-    
+    <textarea formControlName="question" placeholder="Question"></textarea>
+    <app-dropdown (optionSelected)="handleSelection($event)"></app-dropdown>
   </div>
 
   <!-- seperator  -->
   <div class="question-separator"></div>
 
-  <div class="question-selected-type-container">
-    <!-- type selector will be replaced here  -->
-  </div>
+  <app-type [questionType]="questionType"></app-type>
 
   <!-- seperator  -->
   <div class="question-separator"></div>
@@ -27,9 +19,9 @@
   <div class="question-container-footer">
     <div class="required">
       <label>
-        <input type="checkbox" />
+        <input formControlName="isRequired" type="checkbox" />
         <p>Required</p>
       </label>
     </div>
   </div>
-</div>
+</form>

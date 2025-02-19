@@ -1,0 +1,223 @@
+.question-selected-type-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  .question-selected-type-container > * {
+    flex-grow: 3;
+  }
+  
+  .question-selected-type-container .question-constrains {
+    flex-grow: 1;
+    align-items: start;
+  }
+  
+  .question-constrains {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+
+  
+  .question-container-footer {
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+    align-items: center;
+ 
+  }
+  
+
+  
+  
+  
+  
+  .required label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:  0.3rem;
+  }
+  /* //--------------------------------------------------------------------------------------- */
+  
+  .markdown-container {
+    padding: 1rem;
+  }
+  .markdown-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 4px;
+    padding-bottom: 2rem;
+    width: 80%;
+  }
+  
+  .markdown-option input {
+    width: 80%;
+  }
+  
+
+
+  
+  .markdown-option input:focus {
+    width: 80%;
+    border-bottom: 3px solid #a94a4a;
+  }
+  
+
+  
+  .markdown-add-option button {
+    color: #1a73e8;
+    margin-left: 10px;
+  }
+  
+
+  
+  .paragraph-container > textarea {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    background-color: transparent;
+    resize: none;
+  }
+  
+  .time-type-container {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .time-type {
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .date-type-container {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .date-type {
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .number-range-type-container {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .number-range-type {
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .file-image-type-container {
+    padding: 1rem;
+  }
+  
+  .file-image-type {
+    border-radius: 4px;
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  
+  /* constrains 
+   */
+  
+  .min-length,
+  .max-length,
+  .min-selection,
+  .max-selection,
+  .min-value,
+  .max-value {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .min-length input,
+  .max-length input,
+  .min-selection input,
+  .max-selection input,
+  .min-value input,
+  .max-value input {
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 0.5rem;
+    width: 80px;
+    text-align: center;
+  }
+  
+  .start-date input,
+  .end-date input {
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 0.5rem;
+    text-align: center;
+  }
+  
+  /* image type selection css for the upload image section */
+  .image-type-selection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  
+  .image-type-selection label {
+    flex: 1 1 calc(50% - 0.5rem);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .image-type-selection input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+  
+  .image-size {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .image-size label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .image-size input {
+    width: 60px;
+    padding: 0.5rem;
+    border: 1px solid #000;
+    border-radius: 4px;
+    text-align: center;
+  }

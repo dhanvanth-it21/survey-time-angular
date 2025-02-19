@@ -1,3 +1,17 @@
+
+  
+  input {
+    outline: none;
+    border: none;
+    background-color: transparent;
+  }
+  
+
+  
+  li {
+    list-style: none;
+  }
+
 .question-container {
     padding: 24px;
     font-size: 16px;
@@ -32,13 +46,13 @@
     font-size: 1rem;
     resize: none;
     overflow: hidden;
+    width: 400px;
 }
 
 .question-selected-type-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-}
+    width: 100%;
+  }
+
 
 .question-separator {
     padding: 8px 24px 0px 24px;
@@ -91,3 +105,11 @@
 .required input:checked {
     background-color: #a94a4a;
 }
+
+.question-container-footer {
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+    align-items: center;
+   
+  }
