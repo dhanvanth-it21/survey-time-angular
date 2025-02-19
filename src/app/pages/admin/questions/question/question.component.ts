@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrl: './question.component.css'
 })
 export class QuestionComponent {
+
+  @Output()
+  formEmitter: EventEmitter<FormGroup> = new EventEmitter();
   
 
   questionType!: string;
@@ -22,10 +25,12 @@ export class QuestionComponent {
   ngOnInit(): void {
     this.singleQuestion = this.formBuilder.group({
       question: [''],
-      tpye: [FormGroup],
+      type: [FormGroup],
       selectedType: [FormGroup],
       isRequired: [false],
     });
+
+    this.formEmitter.emit(this.singleQuestion);
   }
 
   handleSelection(type: string) {

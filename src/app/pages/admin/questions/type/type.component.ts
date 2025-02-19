@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Input, Output } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { faCircleDot, faSquare, faX, faSquareBinary } from '@fortawesome/free-solid-svg-icons';
 import { max, min } from 'rxjs';
 
@@ -16,6 +16,11 @@ export class TypeComponent {
   @Input()
   questionType!: string;
 
+  @Output()
+
+
+
+
   //icons
   public faCircle = faCircleDot;
   public faX = faX;
@@ -30,10 +35,14 @@ export class TypeComponent {
 
 
 
+
+
+
   fileExtType = [".jpeg",".png",".gif",".tiff",".svg",".webp"]
 
 
   ngOnChanges() {
+
     //changing the commonContainer form group based on the question type
     switch (this.questionType) {
       case 'radio':

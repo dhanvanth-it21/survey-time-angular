@@ -17,4 +17,12 @@ export class SidebarComponent {
   ngOnInit(): void {
   }
 
+  addQuestion() {
+
+  }
+
+  removeQuestion() {
+    
+  }
+
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataSharingService } from '../../../common/data-sharing.service';
 import { ClickEventService } from '../../../common/click-event.service';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,9 @@ export class SurveyCreateComponent {
 
 
   // survey details formGroup initialization
+  survey!: FormGroup;
   surveyDetailsForm!: FormGroup;
+  questionsForm!: FormArray;
 
   constructor(private formBuilder: FormBuilder,
     private dataSharingService: DataSharingService,
@@ -49,12 +51,23 @@ export class SurveyCreateComponent {
     // updating the observable for dynamic navbar
     this.dataSharingService.updateData(this.dynamicContent);
 
+    
+
     // survey title and description formGroup
     this.surveyDetailsForm = this.formBuilder.group({
       surveyTitle: ['',[
         Validators.required,
       ]],
       surveyDescription : [''],
+    })
+
+    //question formgroup
+    this.questionsForm = this.formBuilder.array([FormGroup]);
+
+    //total survey's formgroup
+    this.survey = this.formBuilder.group({
+      surveyDetailsForm: this.surveyDetailsForm,
+      questionsForm: this.questionsForm,
     })
 
     //(helper call)
@@ -87,6 +100,10 @@ export class SurveyCreateComponent {
   //formGroup: (sruvey title and description) submit 
   ngSubmitSurveyDetails() {
     console.log(this.surveyDetailsForm.value);
+  }
+
+  addFormToQuestion(event: FormGroup) {
+    console.log(event.controls);
   }
 
   ngOnDestroy() {
