@@ -1,106 +1,132 @@
-
+<!-- ----------------------radio------------------------  -->
 <div class="question-selected-type-container" *ngIf="questionType === 'radio'">
-  <div class="markdown-container">
-    <div class="markdown-options">
-      <div class="markdown-option">
-        <i class="fa-regular fa-circle" aria-hidden="true"></i
-        ><input type="text" placeholder="Option" />
+  <div class="markdown-container" [formGroup]="commonContainer">
+    <div class="markdown-options" formArrayName="radioOptions">
+      <div
+        class="markdown-option"
+        *ngFor="let option of radioOptions.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <fa-icon [icon]="faCircle"></fa-icon>
+        <input type="text" placeholder="Option" formControlName="option" />
+        <button (click)="radioRemoveOption(i)" class="markdown-option-close">
+          <fa-icon [icon]="faX"></fa-icon>
+        </button>
       </div>
     </div>
     <div class="markdown-add-option">
-      <i class="fa-regular fa-circle" aria-hidden="true"></i
-      ><button>Add another</button>
+      <fa-icon [icon]="faCircle"></fa-icon>
+      <button (click)="radioAddOption()">Add another</button>
     </div>
   </div>
   <div class="question-constrains"></div>
-
 </div>
-<!-- ------------------------------------- -->
+<!-- ----------------------checkbox---------------------- -->
 
-<div class="question-selected-type-container" *ngIf="questionType === 'checkbox'">
-  <div  class="markdown-container">
-    <div class="markdown-options">
-      <div class="markdown-option">
-        <i class="fa-regular fa-square" aria-hidden="true"></i
-        ><input type="text" placeholder="Option" />
+<div
+  class="question-selected-type-container"
+  *ngIf="questionType === 'checkbox'"
+>
+  <div class="markdown-container" [formGroup]="commonContainer">
+    <div class="markdown-options" formArrayName="checkboxOptions">
+      <div
+        class="markdown-option"
+        *ngFor="let option of checkboxOptions.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <fa-icon [icon]="faSquare"></fa-icon>
+        <input type="text" placeholder="Option" formControlName="option" />
+        <button (click)="checkboxRemoveOption(i)" class="markdown-option-close">
+          <fa-icon [icon]="faX"></fa-icon>
+        </button>
       </div>
     </div>
     <div class="markdown-add-option">
-      <i class="fa-regular fa-square" aria-hidden="true"></i
-      ><button>Add another</button>
-    </div>
-  </div>
-  
-  <div class="question-constrains">
-    <div class="min-selection">
-      <label
-        ><input min="1" value="1" type="number" /><span>
-          Min Selection</span
-        ></label
-      >
-    </div>
-    <div class="max-selection">
-      <label
-        ><input min="1" value="1" type="number" /><span>
-          Max Selection</span
-        ></label
-      >
+      <fa-icon [icon]="faSquare"></fa-icon>
+      <button (click)="checkboxAddOption()">Add another</button>
     </div>
   </div>
 
+  <div class="question-constrains" [formGroup]="commonContainer">
+    <div class="min-selection" formGroupName="checkboxConstraints">
+      <label>
+        <input min="1" formControlName="min" type="number" /><span>
+          Min Selection</span
+        >
+      </label>
+    </div>
+    <div class="max-selection" formGroupName="checkboxConstraints">
+      <label>
+        <input min="1" formControlName="max" type="number" /><span>
+          Max Selection</span
+        >
+      </label>
+    </div>
+  </div>
 </div>
 
-<!-- ---------------------------------------------------------------- -->
-
+<!-- -----------------------select--------------------------------- -->
 
 <div class="question-selected-type-container" *ngIf="questionType === 'select'">
-  <div  class="markdown-container">
-    <div class="markdown-options">
-      <div class="markdown-option">
-        <p class="num-sequence">1.</p>
-        <input type="text" placeholder="Option" />
+  <div class="markdown-container" [formGroup]="commonContainer">
+    <div class="markdown-options" formArrayName="selectOptions">
+      <div
+        class="markdown-option"
+        *ngFor="let option of selectOptions.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <p class="num-sequence">{{ i + 1 }}.</p>
+        <input type="text" placeholder="Option" formControlName="option" />
+        <button (click)="selectRemoveOption(i)" class="markdown-option-close">
+          <fa-icon [icon]="faX"></fa-icon>
+        </button>
       </div>
     </div>
     <div class="markdown-add-option">
       <p class="num-sequence"></p>
-      <button>Add another</button>
+      <button (click)="selectAddOption()">Add another</button>
     </div>
   </div>
   <div class="question-constrains"></div>
-
 </div>
 
-<!-- ------------------------------------------------------------ -->
+<!-- ---------------------textarea-------------------------------- -->
 
-<div class="question-selected-type-container" *ngIf="questionType === 'textarea'">
-  <div  class="paragraph-container">
+<div
+  class="question-selected-type-container"
+  *ngIf="questionType === 'textarea'"
+>
+  <div class="paragraph-container">
     <textarea
       class="paragraph-textarea"
       placeholder="Paragraph text"
       disabled="true"
     ></textarea>
   </div>
-  <div class="question-constrains">
-    <div class="min-length">
+  <div class="question-constrains" [formGroup]="commonContainer">
+    <div class="min-length" formGroupName="paragraphConstraints">
       <label
-        ><input min="0" value="1" type="number" /><span>
+        ><input min="0" type="number" formControlName="min" /><span>
           Min Character</span
         ></label
       >
     </div>
-    <div class="max-length">
+    <div class="max-length" formGroupName="paragraphConstraints">
       <label
-        ><input min="0" value="2000" type="number" /><span>
-          Max Character</span
-        ></label
+        ><input
+          min="0"
+          value="2000"
+          type="number"
+          formControlName="max"
+        /><span> Max Character</span></label
       >
     </div>
   </div>
 </div>
 
-<!-- --------------------------------------------------  -->
+<!-- ------------------------number----------------------------  -->
 <div class="question-selected-type-container" *ngIf="questionType === 'number'">
-  <div  class="number-range-type-container">
+  <div class="number-range-type-container">
     <input
       class="number-range-type"
       type="number"
@@ -108,70 +134,90 @@
       placeholder="number as input"
     />
   </div>
-  <div class="question-constrains">
-    <div class="min-value">
-      <label><input min="0" type="number" /><span> Min Value</span></label>
+  <div class="question-constrains" [formGroup]="commonContainer">
+    <div class="min-value" formGroupName="numberConstraints">
+      <label
+        ><input min="0" type="number" formControlName="min" /><span>
+          Min Value</span
+        ></label
+      >
     </div>
-    <div class="max-value">
-      <label><input min="0" type="number" /><span> Max Value</span></label>
+    <div class="max-value" formGroupName="numberConstraints">
+      <label
+        ><input min="0" type="number" formControlName="max" /><span>
+          Max Value</span
+        ></label
+      >
     </div>
   </div>
 </div>
 
-<!-- ---------------------------------------------------  -->
+<!-- -------------------date--------------------------------  -->
 
 <div class="question-selected-type-container" *ngIf="questionType === 'date'">
-  <div  class="date-type-container">
+  <div class="date-type-container">
     <input class="date-type" type="date" disabled="true" />
   </div>
-  <div class="question-constrains">
-    <div class="start-date">
-      <label><input type="date" /><span> Start Date</span></label>
+  <div class="question-constrains" [formGroup]="commonContainer">
+    <div class="start-date" formGroupName="dateConstraints">
+      <label
+        ><input type="date" formControlName="start_date" /><span>
+          Start Date</span
+        ></label
+      >
     </div>
-    <div class="end-date">
-      <label><input type="date" /><span> End Date</span></label>
+    <div class="end-date" formGroupName="dateConstraints">
+      <label
+        ><input type="date" formControlName="end_date" /><span>
+          End Date</span
+        ></label
+      >
     </div>
   </div>
 </div>
 
-<!-- ---------------------------------------------------------------  -->
+<!-- -------------------time------------------------------------  -->
 
 <div class="question-selected-type-container" *ngIf="questionType === 'time'">
-  <div  class="time-type-container">
+  <div class="time-type-container">
     <input class="time-type" type="time" disabled="true" />
   </div>
-  <div class="question-constrains">
-    <div class="start-time">
-      <label><input type="time" /><span> Start Time</span></label>
+  <div class="question-constrains" [formGroup]="commonContainer">
+    <div class="start-time" formGroupName="timeConstraints">
+      <label
+        ><input type="time" formControlName="start_time" /><span>
+          Start Time</span
+        ></label
+      >
     </div>
-    <div class="end-time">
-      <label><input type="time" /><span> End Time</span></label>
+    <div class="end-time" formGroupName="timeConstraints">
+      <label
+        ><input type="time" formControlName="end_time" /><span>
+          End Time</span
+        ></label
+      >
     </div>
   </div>
-  
 </div>
-<!-- ------------------------------------------------------------------ -->
+<!-- -----------------------file-------------------------------- -->
 
- <div class="question-selected-type-container" *ngIf="questionType === 'file'">
-  <div  class="file-image-type-container">
+<div class="question-selected-type-container" *ngIf="questionType === 'file'">
+  <div class="file-image-type-container">
     <input class="file-image-type" type="file" disabled="true" />
   </div>
   <div class="question-constrains">
     <div class="image-type-selection">
-      <label><input value=".jpeg" type="checkbox" /><span> JPEG</span></label
-      ><label><input value=".png" type="checkbox" /><span> PNG</span></label
-      ><label><input value=".gif" type="checkbox" /><span> GIF</span></label
-      ><label><input value=".tiff" type="checkbox" /><span> TIFF</span></label
-      ><label><input value=".svg" type="checkbox" /><span> SVG</span></label
-      ><label><input value=".webp" type="checkbox" /><span> WEBP</span></label>
+      <label *ngFor="let type of fileExtType">
+        <input value="{{ type }}" type="checkbox" (change)="fileAddExt($event)"/>
+        <span> {{ type.split(".")[1].toUpperCase() }}</span>
+      </label>
     </div>
     <div class="image-size">
       <label
-        ><input min="0" value="5" type="number" /><span>
+        ><input type="number" /><span>
           Max Size (MB)</span
         ></label
       >
     </div>
   </div>
- </div>
-
+</div>

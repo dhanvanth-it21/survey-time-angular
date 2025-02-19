@@ -59,6 +59,7 @@
   
   .markdown-option input {
     width: 80%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
   
 
@@ -187,6 +188,7 @@
   
   
   .image-type-selection label {
+    cursor: pointer;
     flex: 1 1 calc(50% - 0.5rem);
     display: flex;
     align-items: center;
@@ -220,4 +222,12 @@
     border: 1px solid #000;
     border-radius: 4px;
     text-align: center;
+  }
+
+  fa-icon {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .markdown-add-option fa-icon {
+    color: rgba(0, 0, 0, 0.2);
   }
