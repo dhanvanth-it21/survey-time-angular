@@ -16,7 +16,11 @@ export class TypeComponent {
   @Input()
   questionType!: string;
 
-  @Output()
+  @Input()
+  singleQuestion!: FormGroup;
+
+
+
 
 
 
@@ -70,6 +74,8 @@ export class TypeComponent {
         this.commonContainer = this.fileType();
         break;
     }
+
+    this.singleQuestion.setControl('selectedType', this.commonContainer);
   }
 
 

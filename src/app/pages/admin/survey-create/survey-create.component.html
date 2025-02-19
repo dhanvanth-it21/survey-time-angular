@@ -1,4 +1,11 @@
-<app-sidebar></app-sidebar>
+<div class="side-menu">
+  <div class="add-question">
+    <fa-icon [icon]="faPlus"></fa-icon>
+  </div>
+  <div class="delete-question">
+    <fa-icon [icon]="faTrash"></fa-icon>
+  </div>
+</div>
 
 <div class="form-body-container">
   <form [formGroup]="surveyDetailsForm" class="form-heading container-box active-box">
@@ -27,6 +34,9 @@
   
 
 
-  <app-question (formEmitter)="addFormToQuestion($event)"></app-question>
+  <app-question 
+  *ngFor="let i of [].constructor(numberOfQuestions)"
+  (formEmitter)="addFormToQuestion($event)"
+  ></app-question>
 
 </div>

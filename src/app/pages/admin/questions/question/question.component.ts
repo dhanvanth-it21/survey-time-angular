@@ -25,16 +25,23 @@ export class QuestionComponent {
   ngOnInit(): void {
     this.singleQuestion = this.formBuilder.group({
       question: [''],
-      type: [FormGroup],
-      selectedType: [FormGroup],
+      type: [''],
+      selectedType: this.formBuilder.group({}),
       isRequired: [false],
     });
 
     this.formEmitter.emit(this.singleQuestion);
   }
 
+  //question type changed and updated to formgropu: singleQuestion
   handleSelection(type: string) {
     this.questionType = type;
+    this.singleQuestion.get('type')?.setValue(type);
   }
+
+  get selectedType(): FormGroup {
+    return this.singleQuestion.get('selectedType') as FormGroup;
+  }
+
 
 }

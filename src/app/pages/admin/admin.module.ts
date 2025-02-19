@@ -10,7 +10,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { QuestionComponent } from './questions/question/question.component';
 import { DropdownComponent } from './questions/dropdown/dropdown.component';
 import { TypeComponent } from './questions/type/type.component';
-import { SidebarComponent } from './questions/sidebar/sidebar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // import { ButtonDirective } from '../../common/button.directive';
 
@@ -24,7 +23,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     QuestionComponent,
     DropdownComponent,
     TypeComponent,
-    SidebarComponent,
   ],
   imports: [
     CommonModule,

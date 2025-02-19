@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataSharingService } from '../../../common/data-sharing.service';
 import { ClickEventService } from '../../../common/click-event.service';
 import { Subscription } from 'rxjs';
+import { faPlus, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-survey-create',
@@ -10,6 +11,9 @@ import { Subscription } from 'rxjs';
   styleUrl: './survey-create.component.css'
 })
 export class SurveyCreateComponent {
+
+  public faPlus: IconDefinition = faPlus;
+  public faTrash: IconDefinition = faTrash;
 
 
   // survey details formGroup initialization
@@ -21,6 +25,9 @@ export class SurveyCreateComponent {
     private dataSharingService: DataSharingService,
     private clickEventService: ClickEventService,
   ) {}
+
+  //number of question
+  public numberOfQuestions = 4;
 
 
   //subscription 
@@ -62,7 +69,7 @@ export class SurveyCreateComponent {
     })
 
     //question formgroup
-    this.questionsForm = this.formBuilder.array([FormGroup]);
+    this.questionsForm = this.formBuilder.array([]);
 
     //total survey's formgroup
     this.survey = this.formBuilder.group({
@@ -77,7 +84,7 @@ export class SurveyCreateComponent {
    // Event Button handling functionality , event form the navBar
    this.clickEventServiceSubcription = this.clickEventService.shareData$.subscribe((button) => {
     if(button === "Create") {
-      this.ngSubmitSurveyDetails();
+      this.ngSubmitSurvey();
     }
     else if(button === "Validate") {
       console.log("Valdiate button clicked at survey create page");
@@ -97,13 +104,14 @@ export class SurveyCreateComponent {
     })
   }
 
-  //formGroup: (sruvey title and description) submit 
-  ngSubmitSurveyDetails() {
+  //formGroup:  submit 
+  ngSubmitSurvey() {
     console.log(this.surveyDetailsForm.value);
+    console.log(this.questionsForm.value);
   }
 
   addFormToQuestion(event: FormGroup) {
-    console.log(event.controls);
+    this.questionsForm.push(event)
   }
 
   ngOnDestroy() {

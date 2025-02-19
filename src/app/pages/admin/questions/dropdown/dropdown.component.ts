@@ -36,7 +36,6 @@ export class DropdownComponent {
     this.selectedType = defaultOption.name;
     this.selectedTypeIcon = defaultOption.icon;
     this.optionSelected.emit(defaultOption.type);
-
   }
 
   //open and closing the dropdown
