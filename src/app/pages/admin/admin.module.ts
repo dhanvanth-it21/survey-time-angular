@@ -11,6 +11,7 @@ import { QuestionComponent } from './questions/question/question.component';
 import { DropdownComponent } from './questions/dropdown/dropdown.component';
 import { TypeComponent } from './questions/type/type.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
 // import { ButtonDirective } from '../../common/button.directive';
 
 
@@ -28,7 +29,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ]
 })
 export class AdminModule { }

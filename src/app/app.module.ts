@@ -15,6 +15,8 @@ import { RespondSurveyComponent } from './pages/user/respond-survey/respond-surv
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './common/auth.service';
 import { ButtonDirective } from './common/button.directive';
+import { ApiService } from './common/api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -30,10 +32,12 @@ import { ButtonDirective } from './common/button.directive';
     AppRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [
     provideClientHydration(),
     AuthService,
+    ApiService,
   ],
   bootstrap: [AppComponent]
 })

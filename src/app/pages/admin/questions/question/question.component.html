@@ -1,6 +1,6 @@
 <form
   [formGroup]="singleQuestion"
-  class="question-container container-box active-box"
+  class="question-container container-box "
 >
   <div class="question-selection">
     <textarea formControlName="question" placeholder="Question"></textarea>
@@ -13,7 +13,6 @@
   <app-type 
   [questionType]="questionType"
   [singleQuestion]="this.singleQuestion"
-  
   ></app-type>
 
   <!-- seperator  -->

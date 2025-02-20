@@ -8,13 +8,16 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class QuestionComponent {
 
-  @Output()
-  formEmitter: EventEmitter<FormGroup> = new EventEmitter();
+  @Input() 
+  singleQuestion!: FormGroup;
+
+  // @Output()
+  // formEmitter: EventEmitter<FormGroup> = new EventEmitter();
   
 
   questionType!: string;
 
-  singleQuestion!: FormGroup;
+  // singleQuestion!: FormGroup;
 
 
   constructor(
@@ -22,16 +25,16 @@ export class QuestionComponent {
 
   ) { }
 
-  ngOnInit(): void {
-    this.singleQuestion = this.formBuilder.group({
-      question: [''],
-      type: [''],
-      selectedType: this.formBuilder.group({}),
-      isRequired: [false],
-    });
+  // ngOnInit(): void {
+  //   this.singleQuestion = this.formBuilder.group({
+  //     question: [''],
+  //     type: [''],
+  //     selectedType: this.formBuilder.group({}),
+  //     isRequired: [false],
+  //   });
 
-    this.formEmitter.emit(this.singleQuestion);
-  }
+  //   this.formEmitter.emit(this.singleQuestion);
+  // }
 
   //question type changed and updated to formgropu: singleQuestion
   handleSelection(type: string) {
