@@ -1,5 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -13,6 +14,7 @@ export class ApiService {
   
   constructor(private http: HttpClient) { }
   
+  //post the created survey
   postCreatedSurvey(surveyObject: any) {
     const  apiuri = `http://${this.serverIp}/survey`;
   
@@ -24,6 +26,19 @@ export class ApiService {
         throw error;
       })
     ).subscribe();
+  }
 
+  //Get the survey cards
+  getSurveyCards() {
+    const apiuri = `http://${this.serverIp}/survey/survey-cards`;
+    const returnData: Observable<Object> = this.http.get(apiuri);
+    return returnData;
+  }
+
+  //active status change for the survey
+  changeActiveStatus(surveyId: string) {
+    const apiuri = `http://${this.serverIp}/survey/active-status/${surveyId}`;
+    const returnData: Observable<Object> = this.http.put(apiuri, {}, { responseType: 'text' });
+    return returnData;
   }
 }

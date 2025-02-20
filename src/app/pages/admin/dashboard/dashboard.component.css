@@ -1,0 +1,148 @@
+.survey-list-container {
+    flex: 1;
+    padding: 20px;
+    width: 1200px;
+    height: 100%;
+  }
+  
+  .survey-list-header h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 20px;
+    text-decoration: underline;
+  }
+  
+  .survey-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .survey-card {
+    cursor: pointer;
+    width: 200px;
+    height: 120px;
+    padding: 15px;
+    background-color: #fff0c1;
+    border: 1px solid #000;
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
+  
+
+  .survey-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #a94a4a;
+    margin-bottom: 10px;
+  }
+  
+  .survey-card p {
+    font-size: 0.6rem;
+    color: #5d5d5d;
+  }
+  /* survey list end */
+  
+  /* active button start */
+  
+  .active {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 0.3rem;
+    width: 100%;
+    margin-top: 10px;
+    border-top: 1px solid #000;
+    padding-top: 10px;
+  }
+  
+  .active input {
+    width: 30px;
+    height: 15px;
+    appearance: none;
+    background-color: #ccc;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .active input:checked {
+    background-color: #a94a4a;
+  }
+  
+  .active input::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    top: 2.5px;
+    left: 2.5px;
+    transition: transform 0.3s;
+  }
+  
+  .active input:checked::before {
+    transform: translateX(15px);
+  }
+  
+  .active label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+  }
+  
+  
+  .active button {
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .active i {
+    font-size: 1rem;
+  }
+  
+  
+  .active .delete i {
+    color: rgb(254, 132, 132);             
+  }
+  
+  .active .delete:hover i {
+    color: #ff0000;  
+  }
+  
+  .active .preview i {
+    color: #5a5a5a; 
+  }
+  
+  .active .preview:hover i {
+    color: #000000; 
+  }
+  
+  .active .delete:active i {
+    color: #fff;
+  }
+  
+  .active .preview:active i {
+    color: #fff;
+  }
+  /* active button end */
+  
+  
+  .truncate-text {
+    width: 150px;         
+    white-space: nowrap;  
+    overflow: hidden;    
+    text-overflow: ellipsis;
+  }
+  

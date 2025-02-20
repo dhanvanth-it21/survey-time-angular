@@ -1,2 +1,31 @@
-<p>dashboard works!</p>
-<h1>{{loggedInUser?.emailId}}</h1>
+<div class="survey-list-container">
+    <div class="survey-list-header">
+      <h2>Survey List</h2>
+    </div>
+    <div class="survey-cards">
+
+        <div class="survey-card" *ngFor="let survey of surveyCards">
+            <h3>{{survey.title}}</h3>
+            <p class="truncate-text">{{survey.description}}</p>
+            <div class="active">
+              <button class="delete">
+                <fa-icon [icon]="faTrash"></fa-icon>
+              </button>
+              <button class="preview">
+                <fa-icon [icon]="faEye"></fa-icon>
+              </button>
+              <label>
+                <input 
+                type="checkbox" 
+                [checked]="survey.active"
+                (click)="toggleActive(survey.id)">
+                <p>Active</p>
+              </label>
+            </div>
+          </div>
+
+
+
+    </div>
+
+  </div>
