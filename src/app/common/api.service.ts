@@ -65,4 +65,12 @@ export class ApiService {
     const returnData: Observable<Object> = this.http.delete(apiuri);
     return returnData;
   }
+
+
+  // --------------------------------------user side---------------------------------------
+  getPendingSurveyCards(emailId: string) {
+    const apiuri = `http://${this.serverIp}/survey/survey-cards/${emailId}`;
+    const returnData: Observable<Object> = this.http.get(apiuri);
+    return returnData;
+  }
 }

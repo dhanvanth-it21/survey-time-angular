@@ -10,7 +10,8 @@ export class AuthService {
   authData: userType[] = [
     {'emailId': 'sbdhanvanth@gmail.com', 'password': '12345678', 'role': 'admin'},
     {'emailId': 'ram@gmail.com', 'password': '12345678', 'role': 'user'},
-    {'emailId': 'kumar@gmail.com', 'password': '12345678', 'role': 'user'}
+    {'emailId': 'kumar@gmail.com', 'password': '12345678', 'role': 'user'},
+    {'emailId': 'kuamr@gmial.com', 'password': '12345678', 'role': 'user'},
   ]
 
   public UserSubject = new BehaviorSubject<{'emailId': string, 'role': string} | null>(null);

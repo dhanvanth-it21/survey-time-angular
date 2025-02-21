@@ -71,7 +71,7 @@ export class HomeComponent {
   // setting the form values only for develpment purpose
   setValue() {
     this.loginForm.patchValue({
-      emailId: 'sbdhanvanth@gmail.com',
+      emailId: 'ram@gmail.com',
       password: '12345678'
     })
   }

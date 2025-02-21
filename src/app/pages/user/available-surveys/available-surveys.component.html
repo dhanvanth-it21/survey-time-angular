@@ -1,1 +1,14 @@
-<p>available-surveys works!</p>
+<div class="survey-list-container">
+    <div class="survey-list-header">
+      <h2>Survey List</h2>
+    </div>
+    <div class="survey-cards">
+      <div class="survey-card" 
+      *ngFor="let survey of surveyCardsDB"
+      >
+        <h3>{{survey.title}}</h3>
+        <p>{{survey.description}}</p>
+      </div>
+    </div>
+  </div>
+  
