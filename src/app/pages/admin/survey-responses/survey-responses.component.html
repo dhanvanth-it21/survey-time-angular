@@ -1,1 +1,28 @@
-<p>survey-responses works!</p>
+<div class="survey-list-container">
+    <div class="survey-list-header">
+      <h2>Response List > {{this.surveyTitle}}</h2>
+    </div>
+    <div class="survey-cards">
+      <div 
+      class="survey-card response-card"
+      *ngFor="let response of responseCardsDB"
+      >
+        <h3>{{response.name}}</h3>
+        <p>{{response.email}}</p>
+        <div class="active">
+          <button 
+          class="delete"
+          (click)="deleteResponseById(response.id)"
+          >
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </button>
+        </div>
+      </div>
+      <div
+      *ngIf="this.responseCardsDB.length === 0"
+      >
+      <h3>No Response Found</h3>
+    </div>
+    </div>
+  </div>
+  

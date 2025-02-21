@@ -4,11 +4,15 @@
     </div>
     <div class="survey-cards">
 
-        <div class="survey-card" *ngFor="let survey of surveyCards">
+        <div 
+        class="survey-card" 
+        *ngFor="let survey of surveyCards"
+        (click)="navigateToResponsePage($event, survey.id, survey.title)"
+        >
             <h3>{{survey.title}}</h3>
             <p class="truncate-text">{{survey.description}}</p>
             <div class="active">
-              <button class="delete">
+              <button (click)="deleteSurveyCard($event, survey.id)" class="delete">
                 <fa-icon [icon]="faTrash"></fa-icon>
               </button>
               <button class="preview">
@@ -18,7 +22,7 @@
                 <input 
                 type="checkbox" 
                 [checked]="survey.active"
-                (click)="toggleActive(survey.id)">
+                (click)="toggleActive($event, survey.id)">
                 <p>Active</p>
               </label>
             </div>

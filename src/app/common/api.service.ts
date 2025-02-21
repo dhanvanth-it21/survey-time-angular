@@ -41,4 +41,28 @@ export class ApiService {
     const returnData: Observable<Object> = this.http.put(apiuri, {}, { responseType: 'text' });
     return returnData;
   }
+
+  deleteSurveyById(surveyId: string) {
+    const apiuri = `http://${this.serverIp}/survey/${surveyId}`;
+    const returnData: Observable<Object> = this.http.delete(apiuri, { responseType: 'text' })
+    return returnData;
+  }
+
+  getAllResponseBySurveyId(surveyId: string) {
+    const apiuri = `http://${this.serverIp}/responses/survey/${surveyId}`;
+    const returnData: Observable<Object> = this.http.get(apiuri);
+    return returnData;
+  }
+
+  deleteResponseByResponseId(responseId: string) {
+    const apiuri = `http://${this.serverIp}/responses/${responseId}`;
+    const returnData: Observable<Object> = this.http.delete(apiuri);
+    return returnData;
+  }
+
+  deleteResponseBySurveyId(surveyId: string) {
+    const apiuri = `http://${this.serverIp}/responses/survey/${surveyId}`;
+    const returnData: Observable<Object> = this.http.delete(apiuri);
+    return returnData;
+  }
 }

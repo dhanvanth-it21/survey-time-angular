@@ -3,6 +3,7 @@ import { DataSharingService } from '../../../common/data-sharing.service';
 import { ClickEventService } from '../../../common/click-event.service';
 import { ApiService } from '../../../common/api.service';
 import { faEye, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,7 @@ export class DashboardComponent {
     private dataSharingService: DataSharingService,
     private clickEventService: ClickEventService,
     private apiService: ApiService,
+    private router: Router,
   ) { }
 
   public faTrash: IconDefinition = faTrash;
@@ -62,12 +64,28 @@ export class DashboardComponent {
     })
 
     this.getSurveyCards();
-    this.surveyCards = this.pagedSurveyCardsDB?.content || [];
 
   }
 
-  toggleActive(surveyId: string) {
+  toggleActive(event: Event, surveyId: string) {
+    event.stopPropagation();
     this.changeActiveStatus(surveyId);
+  }
+  
+  deleteSurveyCard(event: Event, surveyId: string) {
+    event.stopPropagation();
+    this.deleteSurveyById(surveyId);
+  }
+
+  navigateToResponsePage(event: Event, surveyId: string, surveyTitle: string) {
+    event.stopPropagation();
+
+    this.router.navigate(['admin/survey-responses'],{
+      queryParams: {
+        survey_id: surveyId,
+        survey_title: surveyTitle,
+      }
+    });
   }
 
 
@@ -78,8 +96,15 @@ export class DashboardComponent {
     this.apiService.getSurveyCards().subscribe(
       {
         next: (data) => {
-          console.log(data);
           this.pagedSurveyCardsDB = data;
+          this.surveyCards = this.pagedSurveyCardsDB?.content || [
+              {
+                  "id": "67ad49c520a9217601c01a15",
+                  "title": "survey 3",
+                  "description": "---",
+                  "active": true
+              }
+          ];
         },
         error: (e) => console.error(e),
       }
@@ -93,11 +118,26 @@ export class DashboardComponent {
         next: (data) => {
           console.log(data);
         },
-        error: (e) => console.error("-----"+JSON.stringify(e)),
+        error: (e) => console.error(e),
       }
     )
   }
 
+  //delete survey usign surveyId
+  deleteSurveyById(surveyId: string) {
+    this.apiService.deleteSurveyById(surveyId).subscribe({
+      next: (data) => {
+        this.apiService.deleteResponseBySurveyId(surveyId).subscribe({
+          next: () => {},
+          error: (e) => {console.log(e)},
+          complete: () => {"delete completed the response by survey id"}
+        })
+      },
+      error: (e) => {
+        console.error(e);
+      },
+    })
+  }
 
 
 

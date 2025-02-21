@@ -108,32 +108,32 @@
     justify-content: center;
   }
   
-  .active i {
+  .active fa-icon {
     font-size: 1rem;
   }
   
   
-  .active .delete i {
+  .active .delete fa-icon {
     color: rgb(254, 132, 132);             
   }
   
-  .active .delete:hover i {
+  .active .delete:hover fa-icon {
     color: #ff0000;  
   }
   
-  .active .preview i {
+  .active .preview fa-icon {
     color: #5a5a5a; 
   }
   
-  .active .preview:hover i {
+  .active .preview:hover fa-icon {
     color: #000000; 
   }
   
-  .active .delete:active i {
+  .active .delete:active fa-icon {
     color: #fff;
   }
   
-  .active .preview:active i {
+  .active .preview:active fa-icon {
     color: #fff;
   }
   /* active button end */
