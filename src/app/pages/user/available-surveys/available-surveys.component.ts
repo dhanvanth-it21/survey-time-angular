@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../../common/api.service';
 import { AuthService } from '../../../common/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-available-surveys',
@@ -12,6 +13,7 @@ export class AvailableSurveysComponent {
   constructor(
     private apiService: ApiService,
     private authService: AuthService,
+    private router: Router,
   ) {}
 
   public emailId!: string;
@@ -30,6 +32,14 @@ export class AvailableSurveysComponent {
 
   fillPendingSurvey(emailId: string) {
     this.getPendingSurveyCards(emailId);
+  }
+
+  openSurveybyId(surveyId: string) {
+    this.router.navigate(['user/respond-survey'], {
+      queryParams: {
+        surveyId: surveyId,
+      }
+    })
   }
 
 
